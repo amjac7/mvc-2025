@@ -73,7 +73,7 @@ Nu när du kommit vidare så kan du se att du kommer till en sida med lite olika
 
 I och med att vi redan har ett repository så kommer vi att välja **det tredje alternativet: `push`**
 
-**VIKTIGT** Att du har valt `SSH` valet i topen av sidan innan du går vidare. 
+**VIKTIGT** Att du har valt `SSH` valet i toppen av sidan innan du går vidare. 
 
 Om ej:
 - ta en ny flik och fixa kopplingen med SSH nycklar och kom sedan tillbaks till denna guiden.
@@ -91,7 +91,7 @@ för att se att du är på rätt branch (är * framför den du är på, och den 
 git branch
 ```
 
-** KLAR MED KOPPLINGEN **
+**KLAR MED KOPPLINGEN**
 
 
 #### Men hur lägger jag till taggar?

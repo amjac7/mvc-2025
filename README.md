@@ -154,3 +154,45 @@ git push --tags
 **KLAR DU KAN NU OFFICELLT ALLTING**
 
 Lycka till nu med dina framtida projekt med git och github!
+
+
+
+
+
+
+## Kom igång med att köra webbplatsen
+
+**OBS!** Se till att du gjort alla installationer av sympfany innan du fortsätter till nästa steg!
+
+
+när du sen är i rätt mapp, min är återigen `me/report`. 
+
+Så ska du köra följande kommando för att se till att alla delar har blivit byggda som de ska:
+
+
+```bash
+npm run build
+```
+
+
+Sedan för att faktiskt köra igång filen kör du följande kommando:
+
+```bash
+php -S localhost:8888 -t public
+```
+
+=> Så nu öppnar du bara en webbläsare och söker i sökfältet på ``localhost:8888` och symfany sidan ska komma upp.
+
+Lite beroende på hur du lagt upp din sida lägger du sedan in routen du valt att använda, exemplelvis about.
+
+Om du skulle till about gör du bara `/about` **efter** `localhost:8888`.
+
+Så det hela blir alltså:
+
+```bash
+localhost:8888/about
+```
+(I detta fallet).
+
+
+Hoppas detta funkar för dig och gå nu ut och gör fantastiska sidor!

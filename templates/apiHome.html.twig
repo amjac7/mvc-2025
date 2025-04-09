@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API{% endblock %}
+
+
+
+{% block body %}
+                <h1>API</h1>
+                <div class="info">
+                    <p>Länkar till routerna:</p>
+
+                    <li><a href="{{ path('apiHome') }}">API (denna routen)</a></li>
+                    <li><a href="{{ path('quote') }}">Quote routen</a></li>
+                </div>
+{% endblock %}

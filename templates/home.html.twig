@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Home</h1>
+    <div class="shownimage">
+        <a href="{{ asset('img/MindreBildPaMig.jpg') }}">
+            <img src="{{ asset('img/MindreBildPaMig.jpg') }}" alt="">
+        </a>
+    </div>
+    <div class="info">
+        <p> 
+            Hej jag heter Amélie och är 23 år. <br>
+            Jag kommer från början ifrån Helsingborg, men pluggar nu webbprogrammering
+            på BTH i Karlskrona. Jag har alltid tyckt om teknik och fick tipset på en
+            mässa (inför valet av gymnasium) att jag borde gå något med programmering. 
+            Efter att man gjort ett programmeringsspel/test på plats som de hade haft
+            svårt att få lösa.
+        </p>
+        
+        <p>
+            Det var så det hela började och gick därför "informations- och mediateknik
+            på gymnasiet vilket jag trivdes väldigt bra med och där fick jag även upp
+            ögonen för just webbprogrammering och det är här vi är nu.
+        </p>
+
+        <p>
+            Utöver teknik och programmering så gillar jag att ta bilder och att vara
+            med kompisar.
+
+            Jag hoppas att denna korta men informativa texten gav er en bättre bild
+            över vem jag är.
+            
+        </p>
+
+    </div>
+{% endblock %}

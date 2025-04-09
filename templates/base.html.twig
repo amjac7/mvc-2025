@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">  -->
+        
+        
+        <link rel="icon" href="{{ asset('img/glider.svg') }}">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <header class="site-header" style="background-image: url({{ asset('img/background.jpg') }})">
+            <span class="site-title">My Symfony Site</span>
+        </header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li><a href="{{ path('about') }}">About</a></li>
+                <li><a href="{{ path('report') }}">Report</a></li>
+                <li><a href="{{ path('lucky_number') }}">Lucky number</a></li>
+                <li><a href="{{ path('apiHome') }}">API</a></li>
+            </ul>
+        </nav>
+
+        {% block body %}{% endblock %}
+    </body>
+    <footer class="footer">
+        <div class="row">
+            <div class="col3 box">
+                        <p>Manualer:</p>
+                <ul>
+                    <li><a href="https://phptherightway.com/">PHP the right way</a></li>
+                    <li><a href="https://symfony.com/">Symfony doc</a></li>
+                    <li><a href="https://twig.symfony.com/doc/3.x/index.html">Twig doc</a></li>
+                </ul>
+            </div>
+
+            <div class="col3 box">
+                    <p>Fler bra länkar</p>
+            <ul>
+                <li><a href="https://pagespeed.web.dev/">Mät sidans prestanda</a></li>
+                <li><a href="https://caniuse.com/">Vilka HTML/CSS stöds olika webbläsare</a></li>
+                <li><a href="https://codepen.io/">Utvecklingsverktyg för HTML/CSS</a></li>
+            </ul>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col1 final">
+                <p>Denna sidan är Copyright &copy; av mig.</p>
+            </div>
+        </div>
+    </footer>
+</html>

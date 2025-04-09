@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+/** two_column_layout.css */
+
+.two-col-layout {
+    display: flex;
+    /* flex-direction: row;
+    justify-content: space-between; */
+    /* max-width: 900px; */
+    /* gap: 0; */
+    margin: 0;
+    width: 100%;
+}
+
+.two-col-layout>.main {
+    /* width: calc(100% / 16 * 12); */
+    /* 12/16 width */
+
+    width: 75%;
+    padding: 0;
+}
+
+.two-col-layout>.aside {
+    /* width: calc(100% / 16 * 2); */
+    /* 4/16 width */
+
+    /* margin-left: 0; */
+
+    width: 25%;
+    /* 25% of the container width */
+    padding: 0;
+    /* Remove any extra padding */
+    /* background-color: plum; */
+    /* Set background for the aside */
+    border-left: 1px solid #21db758c;
+    /* Border to separate the aside */
+    text-align: center;
+
+
+}
+
+
+
+
+.aside h4 {
+    border-bottom: 1px solid #21db758c;
+
+    padding-top: 2.5%;
+}

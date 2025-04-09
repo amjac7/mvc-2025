@@ -1,0 +1,103 @@
+body {
+    background-color: skyblue;
+
+    margin: 0 auto;
+    width: 800;
+    /*max-width: 1000px; */
+}
+
+
+body {
+    background: url('../images/background.jpg');
+    background-size: cover;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+header {
+    height: 150px;
+
+}
+
+h1 {
+    border-bottom: 4px double #21db75;
+}
+
+/* for navbar */
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar li {
+    float: left;
+    padding: 0;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navbar li a:hover {
+    background-color: #111;
+}
+
+
+
+
+/* for footer */
+
+.footer {
+    /* position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%; */
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+
+/* about */
+
+.info {
+
+    /* background-color: #21db75; */
+    padding: 2%;
+    font-size: 1.1rem;
+}
+
+@import "two_column_layout.css";
+@import "footer.css";
+
+
+
+.shownimage {
+    padding-left: 2%;
+}
+
+.shownimage img {
+    width: 50%;
+    max-width: 300px;
+    height: auto;
+}
+
+ul {
+    list-style-position: inside;
+    padding-left: 0;
+}
+
+li {
+    margin: 0;
+    padding-left: 0;
+    padding-bottom: 2.5%;
+}

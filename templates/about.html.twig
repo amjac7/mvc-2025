@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+
+
+{% block body %}
+    <div class="two-col-layout">
+        <main class="main">
+            <article class="article">
+                <h1>About</h1>
+                <p>An image which can be clicked on.</p>
+                <a href="{{ asset('img/glider.svg') }}">
+                    <img src="{{ asset('img/glider.svg') }}" alt="">
+                </a>
+                <div class="info">
+                    <p>
+                        MVC står för <i>"Objektorienterade webbteknologier"</i>. <br>
+                        Kursen berör bland annat dessa områden:
+                        objektorienterad PHP-programmering med kända webbramverk,
+                        enhetstestning, kodkvalitet och databaskopplingar med objekt
+                        relational mapping (ORM).
+                    </p>
+
+                    <p>
+                        Kursens syfte är att ge praktiska färdigheter i
+                        objektorienterad programmering genom utveckling och
+                        driftsättning av databaskopplade webbapplikationer i ett ramverk.
+                        Man lär sig även att hantera relevanta verktyg och utvecklingsmiljöer.
+                    </p>
+                </div>
+                <div class="shownimage">
+                    <a href="{{ asset('img/programmer.jpg') }}">
+                        <img src="{{ asset('img/programmer.jpg') }}" alt="programmer">
+                    </a>
+                </div>
+            </article>
+        </main>
+
+        <aside class="aside">
+            <h4>Länkar</h4>
+            <a href="https://github.com/dbwebb-se/mvc/tree/main/example">Github kursrepo</a>
+            <br>
+
+            <a href="https://github.com/dbwebb-se/mvc/tree/main/example">Github kursrepo</a>
+        </aside>
+
+    </div>
+
+{% endblock %}

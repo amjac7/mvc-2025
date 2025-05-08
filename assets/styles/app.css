@@ -1,11 +1,17 @@
-body {
+/* body {
     background-color: skyblue;
 
     margin: 0 auto;
     width: 800;
-    /*max-width: 1000px; */
-}
+    /*max-width: 1000px;
+} */
 
+/* justerade min css body lite nu när
+min css funkar så la till lite kod från
+ovan som jag hade med innan i nedan body
+för hade 2st body innan råkade jag se. 
+och kommenterade ut det som ej passade som jag 
+fick ang.stylingen från kmom02! */
 
 body {
     /* background: url('../images/background.jpg'); */
@@ -13,16 +19,42 @@ body {
     background-size: cover;
     padding-left: 1%;
     padding-right: 1%;
+
+    /* kod lite från vad jag hade tidigare */
+    margin: 0 auto;
+    width: 800;
+    max-width: 1000px;
+
+
+    /* från gen kmom02 lägger
+    in visa saker från detta här nu bara för att.  */
+    /* margin: 0 auto; */
+    /* max-width: 800px; */
+    /* font-size: 2em; */
+
 }
+
+
+
+/* body {
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #eee;
+    font-size: 2em;
+} */
+
 
 header {
     height: 150px;
 
 }
 
-h1 {
+/* 
+kommenterar ut denna pga har h1 i kmom02 gen som kör med 
+nu så länge */
+/* h1 {
     border-bottom: 4px double #21db75;
-}
+} */
 
 /* for navbar */
 
@@ -101,4 +133,48 @@ li {
     margin: 0;
     padding-left: 0;
     padding-bottom: 2.5%;
+}
+
+
+
+/* ----------------------
+
+FRÅN KMOM=kmom02 GEN  */
+
+
+input {
+    font-size: 1em;
+}
+
+h1 {
+    border-bottom: 4px double green;
+}
+
+.die {
+    /* font-size: 2em; */
+    font-size: 4em;
+}
+
+
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.flash-warning:before {
+    content: "⚠";
 }

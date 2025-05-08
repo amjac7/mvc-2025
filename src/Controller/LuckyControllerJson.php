@@ -38,13 +38,13 @@ class LuckyControllerJson
             'lucky-message' => 'Hi MEGA JSON response there!',
         ];
 
-/*
-        $response = new Response();
-        $response->setContent(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
+        /*
+                $response = new Response();
+                $response->setContent(json_encode($data));
+                $response->headers->set('Content-Type', 'application/json');
 
-        return $response;
-*/
+                return $response;
+        */
 
         // return new JsonResponse($data);
 

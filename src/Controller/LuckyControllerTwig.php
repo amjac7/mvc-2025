@@ -56,7 +56,7 @@ class LuckyControllerTwig extends AbstractController
             'I code with php'
         ];
         date_default_timezone_set('Europe/Stockholm');
-        
+
 
         $date = date("Y-m-d");
 

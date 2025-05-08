@@ -40,7 +40,7 @@ class CardGameController extends AbstractController
             throw new \Exception("Can not roll more than 99 dices!");
         }
 
-        $cardRoll = [];
+        $cardDraw = [];
         for ($i = 1; $i <= $num; $i++) {
             //$die = new Dice();
             //ändrar så använder DiceGraphic ist.

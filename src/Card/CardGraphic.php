@@ -28,15 +28,17 @@ class CardGraphic extends Card
         'K'
     ];
 
-    // foreach ($this->$suits of $suit) {
-    //     foreach ($this->$ranks of $rank) {
-    //         $this->$representation[] = $rank - $suit;
-    //     }
-    // }
+
 
     public function __construct()
     {
         parent::__construct();
+
+        foreach ($this->suits as $suit) {
+            foreach ($this->ranks as $rank) {
+                $this->representation[] = $suit . $rank;
+            }
+        }
     }
 
     public function getAsString(): string

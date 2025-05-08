@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 
-use App\Dice\Dice;
-use App\Dice\DiceGraphic;
-use App\Dice\DiceHand;
+use App\Card\Card;
+use App\Card\CardGraphic;
+use App\Card\CardHand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,148 +20,152 @@ class CardGameController extends AbstractController
         return $this->render('card/home.html.twig');
     }
 
-    #[Route("/game/pig/test/roll", name: "test_roll_dice")]
-    public function testRollDice(): Response
+    #[Route("/card/draw", name: "test_draw_card")]
+    public function testDrawCard(): Response
     {
-        $die = new Dice();
+        $card = new Card();
 
         $data = [
-            "dice" => $die->roll(),
-            "diceString" => $die->getAsString(),
+            "card" => $card->draw(),
+            "cardString" => $card->getAsString(),
         ];
 
-        return $this->render('pig/test/roll.html.twig', $data);
+        return $this->render('card/test/draw.html.twig', $data);
     }
 
-    #[Route("/game/pig/test/roll/{num<\d+>}", name: "test_roll_num_dices")]
-    public function testRollDices(int $num): Response
+    #[Route("/card/draw/{num<\d+>}", name: "test_draw_num_cards")]
+    public function testDrawCards(int $num): Response
     {
         if ($num > 99) {
             throw new \Exception("Can not roll more than 99 dices!");
         }
 
-        $diceRoll = [];
+        $cardRoll = [];
         for ($i = 1; $i <= $num; $i++) {
             //$die = new Dice();
             //ändrar så använder DiceGraphic ist.
             //(nu kan man köra grafisk tärning ist).
-            $die = new DiceGraphic();
-            $die->roll();
-            $diceRoll[] = $die->getAsString();
+            $card = new CardGraphic();
+            $card->draw();
+            $cardDraw[] = $card->getAsString();
         }
 
         $data = [
-            "num_dices" => count($diceRoll),
-            "diceRoll" => $diceRoll,
+            "num_cards" => count($cardDraw),
+            "cardDraw" => $cardDraw,
         ];
 
-        return $this->render('pig/test/roll_many.html.twig', $data);
+        return $this->render('card/test/draw_many.html.twig', $data);
     }
 
 
-    #[Route("/game/pig/test/dicehand/{num<\d+>}", name: "test_dicehand")]
-    public function testDiceHand(int $num): Response
+    #[Route("/card/test/dicehand/{num<\d+>}", name: "test_cardhand")]
+    public function testCardHand(int $num): Response
     {
         if ($num > 99) {
             throw new \Exception("Can not roll more than 99 dices!");
         }
 
-        $hand = new DiceHand();
+        $hand = new CardHand();
         for ($i = 1; $i <= $num; $i++) {
             if ($i % 2 === 1) {
-                $hand->add(new DiceGraphic());
+                $hand->add(new CardGraphic());
             } else {
-                $hand->add(new Dice());
+                $hand->add(new Card());
             }
         }
 
-        $hand->roll();
+        $hand->draw();
 
         $data = [
-            "num_dices" => $hand->getNumberDices(),
-            "diceRoll" => $hand->getString(),
+            "num_cards" => $hand->getNumberCards(),
+            "cardDraw" => $hand->getString(),
         ];
 
-        return $this->render('pig/test/dicehand.html.twig', $data);
+        return $this->render('card/test/cardhand.html.twig', $data);
     }
 
 
-    #[Route("/game/pig/card", name: "pig_init_get", methods: ['GET'])]
+    #[Route("/card/init", name: "card_init_get", methods: ['GET'])]
     public function init(): Response
     {
-        return $this->render('pig/init.html.twig');
+        return $this->render('card/init.html.twig');
     } 
 
     
-    #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
+    #[Route("/card/init", name: "card_init_post", methods: ['POST'])]
     public function initCallback(
         Request $request,
         SessionInterface $session
     ): Response
     {
-        $numDice = $request->request->get('num_dices');
+        $numCard = $request->request->get('num_cards');
 
-        $session->set("pig_dices", $numDice);
+        $session->set("card_cards", $numCard);
 
-        $hand = new DiceHand();
-        for ($i = 1; $i <= $numDice; $i++) {
-            $hand->add(new DiceGraphic());
+        $hand = new CardHand();
+        for ($i = 1; $i <= $numCard; $i++) {
+            $hand->add(new CardGraphic());
         }
-        $hand->roll();
+        $hand->draw();
 
-        $session->set("pig_dicehand", $hand);
-        $session->set("pig_dices", $numDice);
-        $session->set("pig_round", 0);
-        $session->set("pig_total", 0);
+        $session->set("card_cardhand", $hand);
+        $session->set("card_cards", $numCard);
+        $session->set("card_round", 0);
+        $session->set("card_total", 0);
 
-        return $this->redirectToRoute('pig_play');
+        return $this->redirectToRoute('card_play');
     }
     
 
-/* DEN GAMLA KODEN OVAN ÄR NYA!
-    #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
-    public function initCallback(): Response
-    {
-        // Deal with the submitted form
+/* DEN GAMLA KODEN OVAN ÄR NYA! */
+    // #[Route("/card/init", name: "card_init_post", methods: ['POST'])]
+    // public function initCallback(): Response
+    // {
+    //     // Deal with the submitted form
 
-        return $this->redirectToRoute('pig_play');
-    } */
+    //     return $this->redirectToRoute('card_play');
+    // }
 
-    /* GAMLA KODEN NEDAN!
-    #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
-    public function play(): Response
-    {
-        // Logic to play the game
+    /* GAMLA KODEN NEDAN! */
+    // #[Route("/card/play", name: "card_play", methods: ['GET'])]
+    // public function play(): Response
+    // {
+    //     // Logic to play the game
 
-        return $this->render('pig/play.html.twig');
-    } */
+    //     return $this->render('card/play.html.twig');
+    // }
 
-    #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
+    #[Route("/card/play", name: "card_play", methods: ['GET'])]
     public function play(
         SessionInterface $session
     ): Response
     {
-        $dicehand = $session->get("pig_dicehand");
+        $cardhand = $session->get("card_cardhand");
+
+        if (!$cardhand) {
+            return $this->redirectToRoute('card_init_get');
+        }
 
         $data = [
-            "pigDices" => $session->get("pig_dices"),
-            "pigRound" => $session->get("pig_round"),
-            "pigTotal" => $session->get("pig_total"),
-            "diceValues" => $dicehand->getString() 
+            "cardCards" => $session->get("card_cards"),
+            "cardRound" => $session->get("card_round"),
+            "cardTotal" => $session->get("card_total"),
+            "cardValues" => $cardhand->getString() 
         ];
 
-        return $this->render('pig/play.html.twig', $data);
+        return $this->render('card/play.html.twig', $data);
     }
 
-    #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
-    public function roll(
+    #[Route("/card/draw", name: "card_draw", methods: ['POST'])]
+    public function draw(
         SessionInterface $session
     ): Response
     {
-        $hand = $session->get("pig_dicehand");
-        $hand->roll();
+        $hand = $session->get("card_cardhand");
+        $hand->draw();
 
-        $roundTotal = $session->get("pig_round");
+        $roundTotal = $session->get("card_round");
         $round = 0;
         $values = $hand->getValues();
         foreach ($values as $value) {
@@ -177,28 +181,28 @@ class CardGameController extends AbstractController
             $round += $value;
         }
 
-        $session->set("pig_round", $roundTotal + $round);
+        $session->set("card_round", $roundTotal + $round);
         
-        return $this->redirectToRoute('pig_play');
+        return $this->redirectToRoute('card_play');
     }
 
-    #[Route("/game/pig/save", name: "pig_save", methods: ['POST'])]
+    #[Route("/card/save", name: "card_save", methods: ['POST'])]
     public function save(
         SessionInterface $session
     ): Response
     {
-        $roundTotal = $session->get("pig_round");
-        $gameTotal = $session->get("pig_total");
+        $roundTotal = $session->get("card_round");
+        $gameTotal = $session->get("card_total");
 
-        $session->set("pig_round", 0);
-        $session->set("pig_total", $roundTotal + $gameTotal);
+        $session->set("card_round", 0);
+        $session->set("card_total", $roundTotal + $gameTotal);
 
         $this->addFlash(
             'notice',
             'Your round was saved to the total!'
         );
 
-        return $this->redirectToRoute('pig_play');
+        return $this->redirectToRoute('card_play');
     }
     
 }

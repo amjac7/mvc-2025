@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+<h1>Draw many cards</h1>
+
+<p>You rolled {{ num_cards }} cards. Here is the value of the cards.</p>
+
+<ul>
+{% for draw in cardDraw %}
+    <li>{{ draw }}</li>
+{% endfor %}
+</ul>
+
+<p>Try to draw 
+    <a href="{{ path('test_draw_num_cards', {num: 5}) }}">5</a>
+    or 
+    <a href="{{ path('test_draw_num_cards', {num: 10}) }}">10</a>
+    cards.
+</p>
+{% endblock %}

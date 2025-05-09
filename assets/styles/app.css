@@ -178,3 +178,31 @@ h1 {
 .flash-warning:before {
     content: "⚠";
 }
+
+
+/* -------------------------  */
+.carddiv {
+
+    background-color: rgb(107, 166, 226);
+    border: black solid 1px;
+    /* width: 10%; */
+    /* width: 50px;
+    height: 70px; */
+
+    width: 100px;
+    height: 140px;
+    border-radius: 20px;
+
+    /* height: 12%; */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    font-size: 2.5em;
+    font-weight: 600;
+
+    margin-left: 7%;
+}
+
+/* .card {
+
+    font-size: 4em;
+} */

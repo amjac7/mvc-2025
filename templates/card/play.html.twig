@@ -23,11 +23,15 @@
 
 <p>
 {% for value in cardValues %}
-    <span class="card">{{ value }}</span>
+    <div class="carddiv">
+        <span class="card">{{ value }}</span>
+    </div>
 {% endfor %}
 </p>
 
-{{ include('flash.html.twig') }}
+
+    {{ include('flash.html.twig') }}
+
 
 <p>You are playing with {{ cardCards }} cards.</p>
 

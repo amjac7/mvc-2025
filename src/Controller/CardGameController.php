@@ -20,20 +20,43 @@ class CardGameController extends AbstractController
         return $this->render('card/home.html.twig');
     }
 
-    #[Route("/card/draw", name: "test_draw_card")]
-    public function testDrawCard(): Response
+    #[Route("/card/deck/draw", name: "test_draw_card")]
+    public function testDrawCard(
+        Request $request,
+        SessionInterface $session
+    ): Response
     {
-        $card = new Card();
+        $totalCards = 52;
+
+        $remainingCards = $session->get('card_remaining', $totalCards);
+
+        if ($remainingCards > 0) {
+            $card = new CardGraphic();
+            $card->draw();
+
+        }
+
+        if ($remainingCards == 0) {
+            $totalCards = 52;
+            // $card = new CardGraphic();
+
+        }
+
+        $session->set('card_remaining', $remainingCards - 1);
+
+        // $card = new Card();
+        // $card = new CardGraphic();
 
         $data = [
             "card" => $card->draw(),
             "cardString" => $card->getAsString(),
+            "remainingCards" => $remainingCards -1,
         ];
 
         return $this->render('card/test/draw.html.twig', $data);
     }
 
-    #[Route("/card/draw/{num<\d+>}", name: "test_draw_num_cards")]
+    #[Route("/card/deck/draw/{num<\d+>}", name: "test_draw_num_cards")]
     public function testDrawCards(int $num): Response
     {
         if ($num > 99) {
@@ -116,25 +139,7 @@ class CardGameController extends AbstractController
 
         return $this->redirectToRoute('card_play');
     }
-    
 
-/* DEN GAMLA KODEN OVAN ÄR NYA! */
-    // #[Route("/card/init", name: "card_init_post", methods: ['POST'])]
-    // public function initCallback(): Response
-    // {
-    //     // Deal with the submitted form
-
-    //     return $this->redirectToRoute('card_play');
-    // }
-
-    /* GAMLA KODEN NEDAN! */
-    // #[Route("/card/play", name: "card_play", methods: ['GET'])]
-    // public function play(): Response
-    // {
-    //     // Logic to play the game
-
-    //     return $this->render('card/play.html.twig');
-    // }
 
     #[Route("/card/play", name: "card_play", methods: ['GET'])]
     public function play(

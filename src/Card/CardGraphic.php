@@ -36,13 +36,15 @@ class CardGraphic extends Card
 
         foreach ($this->suits as $suit) {
             foreach ($this->ranks as $rank) {
-                $this->representation[] = $suit . $rank;
+                $this->representation[] = $suit . " " . $rank;
             }
         }
     }
 
     public function getAsString(): string
     {
+        // return "<div class='carddiv'>" . $this->representation[$this->value - 1] . "</div>" ;
+
         return $this->representation[$this->value - 1];
     }
 }

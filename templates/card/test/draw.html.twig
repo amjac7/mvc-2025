@@ -7,13 +7,13 @@
 
 <p>Here is the value of the card.</p>
 
-<div class="carddiv">
-
-    <ul>
+<div class="cardBody">
+    {# <ul> #}
         {# <li>{{ cardString }}</li> #}
+    <div class="carddiv">
         {{ cardString }}
-    </ul>
-
+    </div>
+    {# </ul> #}
 </div>
 
 <p>Total cards left in deck: {{ remainingCards }}</p>

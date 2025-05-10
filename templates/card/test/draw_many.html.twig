@@ -8,13 +8,13 @@
 <p>You drew {{ num_cards }} cards. Here is the value of the cards.</p>
 
 <div class="cardBody">
-    <ul>
+    {# <ul> #}
         {% for draw in cardDraw %}
             <div class="carddiv">
                 {{ draw }}
             </div>
         {% endfor %}
-    </ul>
+    {# </ul> #}
 </div>
 
 <p>Total cards left in deck: {{ remainingCards }}</p>

@@ -181,7 +181,24 @@ h1 {
 
 
 /* -------------------------  */
+
+.cardBody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    flex-direction: row;
+    background-color: palevioletred;
+}
+
+
+
 .carddiv {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: rgb(107, 166, 226);
     border: black solid 1px;
@@ -207,11 +224,6 @@ h1 {
     font-size: 4em;
 } */
 
-.cardBody {
-    display: flex;
-    flex-direction: row;
-    background-color: palevioletred;
-}
 
 .testCardInfo {
     font-size: 2.5em;

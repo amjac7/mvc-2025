@@ -82,42 +82,7 @@ class CardGameController extends AbstractController
         return $this->render('card/test/draw.html.twig', $data);
     }
 
-    // #[Route("/card/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards")]
-    // public function testDrawCards(
-    //     SessionInterface $session,
-    //     int $num = 5
-    //     ): Response
-    // {
 
-    //     $deck = $session->get("deck");
-
-    //     if (!$deck) {
-    //         $deck = new DeckofCards();
-    //     }
-
-    //     if ($num > 52) {
-    //         throw new \Exception("Can not roll more than 52 cards!");
-    //     }
-
-    //     $cardDraw = [];
-    //     for ($i = 1; $i <= $num; $i++) {
-    //         $card = $deck->drawCard();
-    //         if ($card === null) {
-    //             break;
-    //         }
-    //         $cardDraw[] = $card->getAsString();
-    //     }
-
-    //     $session->set("deck", $deck);
-
-    //     $data = [
-    //         "num_cards" => count($cardDraw),
-    //         "cardDraw" => $cardDraw,
-    //         "remainingCards" => $deck->getRemainingCards(),
-    //     ];
-
-    //     return $this->render('card/test/draw_many.html.twig', $data);
-    // }
 
 
     #[Route("/card/test/dicehand/{num<\d+>}", name: "test_cardhand")]

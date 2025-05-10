@@ -8,6 +8,13 @@ när kollade i min base.html.twig fil som namnet! #}
 {% block body %}
 <h1>Card game</h1>
 
+{{ include('flash.html.twig') }}
+
+    <form action="{{ path('card_deck_reset') }}" method="post">
+        <button type="submit">Reset the deck</button>
+    </form>
+
+
                 <div class="info">
                     <p>Länkar till card routerna:</p>
 

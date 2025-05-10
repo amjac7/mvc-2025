@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Card\DeckofCards;
 use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
@@ -26,31 +26,20 @@ class CardGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
-        $totalCards = 52;
+        $deck = $session->get("deck");
 
-        $remainingCards = $session->get('card_remaining', $totalCards);
-
-        if ($remainingCards > 0) {
-            $card = new CardGraphic();
-            $card->draw();
-
+        if (!$deck) {
+            $deck = new DeckofCards();
         }
 
-        if ($remainingCards == 0) {
-            $totalCards = 52;
-            // $card = new CardGraphic();
+        $card = $deck->drawCard();
 
-        }
-
-        $session->set('card_remaining', $remainingCards - 1);
-
-        // $card = new Card();
-        // $card = new CardGraphic();
+        $session->set("deck",$deck);
 
         $data = [
-            "card" => $card->draw(),
-            "cardString" => $card->getAsString(),
-            "remainingCards" => $remainingCards -1,
+            "card" => $card,
+            "cardString" => $card->getAsString() ?? "No more cards.",
+            "remainingCards" => $deck->getRemainingCards(),
         ];
 
         return $this->render('card/test/draw.html.twig', $data);
@@ -210,4 +199,21 @@ class CardGameController extends AbstractController
         return $this->redirectToRoute('card_play');
     }
     
+
+    #[Route("/card/deck/reset", name: "card_deck_reset")]
+    public function resetTheDeck(
+        SessionInterface $session
+    ): Response
+    {
+        $deck = new DeckofCards();
+
+        $session->set("deck", $deck);
+
+        $this->addFlash(
+            'notice',
+            'The deck was reset!'
+        );
+
+        return $this->redirectToRoute('card_start');
+    }
 }

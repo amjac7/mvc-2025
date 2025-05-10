@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DeckofCards;
+namespace App\Card;
 
 class DeckofCards
 // ÄNDRA  TILL DECKOFCARDS!!!!!!!!!!!!!!!
@@ -28,19 +28,21 @@ class DeckofCards
         'Q',
         ];
 
+        $this->deck =  [];
+
         foreach ($suits as $suit) {
             foreach ($ranks as $rank) {
-                $this->deck[] = new CardGraphic($suit, $rank);
+                // $this->deck[] = new CardGraphic($suit, $rank);
+                $card = new CardGraphic();
+                $card->getValue(count($this->deck));
+                $this->deck[] = $card;
             }
-    }
+        }
     $this->remainingCards = count($this->deck);
     }
 
-     // public function draw(): int
-    // {
-    //     $this->value = random_int(1, 52);
-    //     return $this->value;
-    // }
+
+
 
     public function drawCard(): ?CardGraphic
     {

@@ -12,32 +12,14 @@ class DeckofCards
 
     public function __construct()
     {
-        $suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-        $ranks = [
-        'A',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        'J',
-        'Q',
-        ];
 
-        $this->deck =  [];
 
-        foreach ($suits as $suit) {
-            foreach ($ranks as $rank) {
-                // $this->deck[] = new CardGraphic($suit, $rank);
-                $card = new CardGraphic();
-                $card->getValue(count($this->deck));
-                $this->deck[] = $card;
-            }
+        for ($i = 1; $i <= 52; $i++) {
+            $card = new CardGraphic();
+            $card->draw($i);
+            $this->deck[] = $card;
         }
+
     $this->remainingCards = count($this->deck);
     }
 
@@ -48,7 +30,7 @@ class DeckofCards
     {
         if ($this->remainingCards > 0) {
             $card = array_pop($this->deck);
-            $this->remainingCards -= 1;
+            $this->remainingCards = count($this->deck);
             return $card;
         }
         return null;

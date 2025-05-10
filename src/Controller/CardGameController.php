@@ -20,6 +20,43 @@ class CardGameController extends AbstractController
         return $this->render('card/home.html.twig');
     }
 
+    #[Route("/card/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards")]
+    public function testDrawCards(
+        SessionInterface $session,
+        int $num = 5
+        ): Response
+    {
+
+        $deck = $session->get("deck");
+
+        if (!$deck) {
+            $deck = new DeckofCards();
+        }
+
+        if ($num > 52) {
+            throw new \Exception("Can not roll more than 52 cards!");
+        }
+
+        $cardDraw = [];
+        for ($i = 1; $i <= $num; $i++) {
+            $card = $deck->drawCard();
+            if ($card === null) {
+                break;
+            }
+            $cardDraw[] = $card->getAsString();
+        }
+
+        $session->set("deck", $deck);
+
+        $data = [
+            "num_cards" => count($cardDraw),
+            "cardDraw" => $cardDraw,
+            "remainingCards" => $deck->getRemainingCards(),
+        ];
+
+        return $this->render('card/test/draw_many.html.twig', $data);
+    }
+
     #[Route("/card/deck/draw", name: "test_draw_card")]
     public function testDrawCard(
         Request $request,
@@ -45,30 +82,42 @@ class CardGameController extends AbstractController
         return $this->render('card/test/draw.html.twig', $data);
     }
 
-    #[Route("/card/deck/draw/{num<\d+>}", name: "test_draw_num_cards")]
-    public function testDrawCards(int $num): Response
-    {
-        if ($num > 99) {
-            throw new \Exception("Can not roll more than 99 dices!");
-        }
+    // #[Route("/card/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards")]
+    // public function testDrawCards(
+    //     SessionInterface $session,
+    //     int $num = 5
+    //     ): Response
+    // {
 
-        $cardDraw = [];
-        for ($i = 1; $i <= $num; $i++) {
-            //$die = new Dice();
-            //ändrar så använder DiceGraphic ist.
-            //(nu kan man köra grafisk tärning ist).
-            $card = new CardGraphic();
-            $card->draw();
-            $cardDraw[] = $card->getAsString();
-        }
+    //     $deck = $session->get("deck");
 
-        $data = [
-            "num_cards" => count($cardDraw),
-            "cardDraw" => $cardDraw,
-        ];
+    //     if (!$deck) {
+    //         $deck = new DeckofCards();
+    //     }
 
-        return $this->render('card/test/draw_many.html.twig', $data);
-    }
+    //     if ($num > 52) {
+    //         throw new \Exception("Can not roll more than 52 cards!");
+    //     }
+
+    //     $cardDraw = [];
+    //     for ($i = 1; $i <= $num; $i++) {
+    //         $card = $deck->drawCard();
+    //         if ($card === null) {
+    //             break;
+    //         }
+    //         $cardDraw[] = $card->getAsString();
+    //     }
+
+    //     $session->set("deck", $deck);
+
+    //     $data = [
+    //         "num_cards" => count($cardDraw),
+    //         "cardDraw" => $cardDraw,
+    //         "remainingCards" => $deck->getRemainingCards(),
+    //     ];
+
+    //     return $this->render('card/test/draw_many.html.twig', $data);
+    // }
 
 
     #[Route("/card/test/dicehand/{num<\d+>}", name: "test_cardhand")]

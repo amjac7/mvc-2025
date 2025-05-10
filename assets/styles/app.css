@@ -206,3 +206,16 @@ h1 {
 
     font-size: 4em;
 } */
+
+.cardBody {
+    display: flex;
+    flex-direction: row;
+    background-color: palevioletred;
+}
+
+.testCardInfo {
+    font-size: 2.5em;
+    font-weight: 600;
+    text-align: center;
+    color: chartreuse;
+}

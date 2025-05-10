@@ -4,7 +4,11 @@ namespace App\Card;
 
 class CardGraphic extends Card
 {
+    // private $representation = [];
+
+    // private static array $representation = [];
     private $representation = [];
+
     private $suits = [
         '♠',
         '♡',
@@ -28,30 +32,23 @@ class CardGraphic extends Card
         'K'
     ];
 
-    private $suit;
-    private $rank;
 
-    public function __construct($suit = null, $rank = null)
+    public function __construct()
     {
         parent::__construct();
 
-        $this->suit = $suit;
-        $this->rank = $rank;
-
-        // foreach ($this->suits as $suit) {
-        //     foreach ($this->ranks as $rank) {
-        //         $this->representation[] = $suit . " " . $rank;
-        //     }
-        // }
-
-        $this->representation[] = $suit . " " . $rank;
+        if (!$this->representation) {
+            foreach ($this->suits as $suit) {
+                foreach ($this->ranks as $rank) {
+                    $this->representation[] = $suit . " " . $rank;
+                }
+            }
+        }
     }
 
     public function getAsString(): string
     {
-        // return "<div class='carddiv'>" . $this->representation[$this->value - 1] . "</div>" ;
 
-        // return $this->representation[$this->value - 1];
-        return $this->representation[$this->value];
+        return $this->representation[$this->value - 1];
     }
 }

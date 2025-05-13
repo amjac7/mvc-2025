@@ -11,8 +11,10 @@ class CardGraphic extends Card
 
     private $suits = [
         '♠',
-        '♡',
-        '♢',
+        // '♡',
+        '♥',
+        // '♢',
+        '♦',
         '♣',
     ];
 
@@ -46,9 +48,13 @@ class CardGraphic extends Card
         }
     }
 
+
+
+
     public function getAsString(): string
     {
 
         return $this->representation[$this->value - 1];
+
     }
 }

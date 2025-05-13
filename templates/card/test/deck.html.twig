@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+<h1>Full deck of cards</h1>
+
+<p>Here is the full deck of cards.</p>
+
+<div class="cardBody">
+        {% for draw in cardDraw %}
+            {# <div class="carddiv"> #}
+            {% set isRed = '♥' in draw or '♦' in draw %}
+            <div class="carddiv {{ isRed ? 'red' : 'black' }}">
+                {{ draw }}
+            </div>
+        {% endfor %}
+</div>
+
+{% endblock %}
+
+

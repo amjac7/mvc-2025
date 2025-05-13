@@ -46,5 +46,17 @@ class DeckofCards
     public function getAllCards(): array {
         return $this->deck;
     }
+
+    public function getSortedCards(): array
+    {
+        $copy = $this->deck;
+
+        usort($copy, function ($a, $b) {
+            // return strcmp($a->getAsString(), $b->getAsString());
+            return $a->getValue() <=> $b->getValue();
+        });
+
+        return $copy;
+    }
     
 }

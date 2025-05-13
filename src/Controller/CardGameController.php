@@ -119,6 +119,8 @@ class CardGameController extends AbstractController
         //code
         $deck = new DeckofCards();
         $cards = $deck->getAllCards();
+
+        // $cards = $deck->getSortedCards();
         
         $cardDraw = [];
 
@@ -252,4 +254,11 @@ class CardGameController extends AbstractController
 
         return $this->redirectToRoute('card_start');
     }
+
+    #[Route("/session", name: "session_start")]
+    public function sessionHome(): Response
+    {
+        return $this->render('card/session-home.html.twig');
+    }
 }
+

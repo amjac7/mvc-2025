@@ -20,6 +20,32 @@ class CardGameController extends AbstractController
         return $this->render('card/home.html.twig');
     }
 
+    #[Route("/card/deck/draw", name: "test_draw_card")]
+    public function testDrawOneCard(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get("deck");
+
+        if (!$deck) {
+            $deck = new DeckofCards();
+        }
+
+        $card = $deck->drawCard();
+
+        $session->set("deck",$deck);
+
+        $data = [
+            "card" => $card,
+            "cardString" => $card->getAsString() ?? "No more cards.",
+            "remainingCards" => $deck->getRemainingCards(),
+        ];
+
+        return $this->render('card/test/draw.html.twig', $data);
+    }
+
+
     #[Route("/card/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards")]
     public function testDrawCards(
         SessionInterface $session,
@@ -57,33 +83,6 @@ class CardGameController extends AbstractController
         return $this->render('card/test/draw_many.html.twig', $data);
     }
 
-    #[Route("/card/deck/draw", name: "test_draw_card")]
-    public function testDrawCard(
-        Request $request,
-        SessionInterface $session
-    ): Response
-    {
-        $deck = $session->get("deck");
-
-        if (!$deck) {
-            $deck = new DeckofCards();
-        }
-
-        $card = $deck->drawCard();
-
-        $session->set("deck",$deck);
-
-        $data = [
-            "card" => $card,
-            "cardString" => $card->getAsString() ?? "No more cards.",
-            "remainingCards" => $deck->getRemainingCards(),
-        ];
-
-        return $this->render('card/test/draw.html.twig', $data);
-    }
-
-
-
 
     #[Route("/card/test/dicehand/{num<\d+>}", name: "test_cardhand")]
     public function testCardHand(int $num): Response
@@ -118,9 +117,9 @@ class CardGameController extends AbstractController
     {
         //code
         $deck = new DeckofCards();
-        $cards = $deck->getAllCards();
+        // $cards = $deck->getAllCards();
 
-        // $cards = $deck->getSortedCards();
+        $cards = $deck->getSortedCards();
         
         $cardDraw = [];
 
@@ -134,6 +133,34 @@ class CardGameController extends AbstractController
 
         return $this->render('card/test/deck.html.twig', $data);
     }
+
+    #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
+    public function testShuffleDeck(
+        SessionInterface $session
+    ): Response
+    {
+        //code
+        $deck = new DeckofCards();
+
+        $deck->shuffle();
+        
+        $cards = $deck->getAllCards();
+
+
+        $cardDraw = [];
+
+        foreach ($cards as $card) {
+            $cardDraw[] = $card->getAsString();
+        }
+
+        $data = [
+            "cardDraw" => $cardDraw, 
+        ];
+
+        return $this->render('card/test/deckShuffle.html.twig', $data);
+    }
+
+
 
 
     #[Route("/card/init", name: "card_init_get", methods: ['GET'])]
@@ -256,9 +283,19 @@ class CardGameController extends AbstractController
     }
 
     #[Route("/session", name: "session_start")]
-    public function sessionHome(): Response
+    public function sessionHome(
+        SessionInterface $session
+    ): Response
     {
-        return $this->render('card/session-home.html.twig');
+
+        $sessionData = $session->all();
+
+
+        $data = [
+            "sessionData" => $sessionData
+        ];
+
+        return $this->render('card/session-home.html.twig', $data);
     }
 }
 

@@ -6,27 +6,30 @@
 när kollade i min base.html.twig fil som namnet! #}
 {# {% block main %} #}
 {% block body %}
-<h1>Session</h1>
+    <h1>Sessions inmehåll</h1>
 
-{{ include('flash.html.twig') }}
-
-    <form action="{{ path('card_deck_reset') }}" method="post">
-        <button type="submit">Reset the deck</button>
-    </form>
+    {{ include('flash.html.twig') }}
 
 
-                <div class="info">
-                    <p>Länkar till card routerna:</p>
-
-                    <li><a href="{{ path('test_draw_card') }}">Draw <strong>one</strong> card</a></li>
-                    <li><a href="{{ path('test_draw_num_cards', {num: 5}) }}">Draw <strong>multiple</strong> cards</a></li>
-                    <li><a href="{{ path('card_deck') }}">Draw <strong>all</strong> cards</a></li>
-                    <li><a href="{{ path('card_init_get') }}">init routen</a></li>
-                </div>
-
-<p>Strukturen för mina klasser:</p>
-
-<p>UML KLASS DIAGRAM LÄGGS IN HÄR!</p>
+    <h2>Sessions Data: </h2>
+    {# <ul> #}
+        {# {% for key, value in sessionData %}
+            <li>{{ key }}: {{ value }}</li>
+        {% else %}
+            <li>No session data found.</li>
+        {% endfor %}
+    </ul> #}
 
 
+    <pre>
+        {{ dump(sessionData) }}
+    </pre>
+
+{# komma åt deck/deck #}
+    {# <div>
+        {% for key, value in sessionData %}
+            <strong>{{ key }}:</strong> {{ value }}<br>
+        {% endfor %}
+    </div> #}
 {% endblock %}
+

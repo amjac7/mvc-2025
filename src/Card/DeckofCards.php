@@ -15,9 +15,8 @@ class DeckofCards
 
 
         for ($i = 1; $i <= 52; $i++) {
-            $card = new CardGraphic();
-            $card->draw($i);
-            $this->deck[] = $card;
+            $card = new CardGraphic($i);
+            $this->deck[$i] = $card;
         }
 
     $this->remainingCards = count($this->deck);

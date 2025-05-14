@@ -6,9 +6,9 @@ class Card
 {
     protected $value;
 
-    public function __construct()
+    public function __construct(int $value)
     {
-        $this->value = null;
+        $this->value = $value;
     }
 
     public function draw(): int

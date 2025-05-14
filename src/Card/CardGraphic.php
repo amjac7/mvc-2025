@@ -35,14 +35,18 @@ class CardGraphic extends Card
     ];
 
 
-    public function __construct()
+    public function __construct(int $value)
     {
-        parent::__construct();
+        parent::__construct($value);
+
+        
 
         if (!$this->representation) {
+            $counterTest = 0; 
             foreach ($this->suits as $suit) {
                 foreach ($this->ranks as $rank) {
-                    $this->representation[] = $suit . " " . $rank;
+                    $this->representation[$counterTest] = $suit . " " . $rank;
+                    $counterTest += 1; 
                 }
             }
         }

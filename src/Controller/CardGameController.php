@@ -115,9 +115,15 @@ class CardGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
-        //code
-        $deck = new DeckofCards();
-        // $cards = $deck->getAllCards();
+
+        $deck = $session->get("deck");
+
+        if (!$deck) {
+            $deck = new DeckofCards();
+        }
+
+        
+
 
         $cards = $deck->getSortedCards();
         
@@ -143,7 +149,7 @@ class CardGameController extends AbstractController
         $deck = new DeckofCards();
 
         $deck->shuffle();
-        
+
         $cards = $deck->getAllCards();
 
 
@@ -296,6 +302,23 @@ class CardGameController extends AbstractController
         ];
 
         return $this->render('card/session-home.html.twig', $data);
+    }
+
+    #[Route("/session/remove", name: "session_end")]
+    public function sessionRemove(
+        SessionInterface $session
+    ): Response
+    {
+
+
+        $session->clear();
+        
+        $this->addFlash(
+            'notice',
+            'Nu är sessionen raderad!'
+        );
+
+        return $this->redirectToRoute('session_start');
     }
 }
 

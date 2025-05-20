@@ -74,4 +74,5 @@ class LuckyControllerTwig extends AbstractController
         );
         return $response;
     }
+    
 }

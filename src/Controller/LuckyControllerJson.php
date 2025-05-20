@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Card\DeckofCards;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class LuckyControllerJson
 {
     #[Route('/lucky/number')]
@@ -51,6 +54,46 @@ class LuckyControllerJson
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route("/api/deck", name: "api_deck")]
+    public function allCards(
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get("deck");
+
+        if (!$deck) {
+            $deck = new DeckofCards();
+        }
+
+        $cards = $deck->getSortedCards();
+        
+        $cardDraw = [];
+
+        foreach ($cards as $card) {
+            $cardDraw[] = $card->getAsString();
+        }
+
+        $data = [
+            "cardDraw" => $cardDraw, 
+        ];
+        
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions()
+            | JSON_PRETTY_PRINT
+            | JSON_UNESCAPED_UNICODE
+
+            //behövde tydligen lägga till
+            // ovan |JSON_UNESCAPED_UNICODE 
+            // för att få symbolerna att funka i
+            //json när visar dem i denna routen.
+
+            // => och ja det löste problemet med symbolerna!
         );
         return $response;
     }

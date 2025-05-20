@@ -152,6 +152,8 @@ class CardGameController extends AbstractController
 
         $deck->shuffle();
 
+        $session->set("deck", $deck);
+
         $cards = $deck->getAllCards();
 
 

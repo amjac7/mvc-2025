@@ -97,4 +97,46 @@ class LuckyControllerJson
         );
         return $response;
     }
+
+    #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["POST"])]
+    public function testShuffleApiDeck(
+        SessionInterface $session
+    ): Response
+    {
+
+        $deck = new DeckofCards();
+
+        $deck->shuffle();
+
+        $session->set("deck", $deck);
+
+        $cards = $deck->getAllCards();
+
+
+        $cardDraw = [];
+
+        foreach ($cards as $card) {
+            $cardDraw[] = $card->getAsString();
+        }
+
+        $data = [
+            "cardDraw" => $cardDraw, 
+        ];
+        
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions()
+            | JSON_PRETTY_PRINT
+            | JSON_UNESCAPED_UNICODE
+
+            //behövde tydligen lägga till
+            // ovan |JSON_UNESCAPED_UNICODE 
+            // för att få symbolerna att funka i
+            //json när visar dem i denna routen.
+
+            // => och ja det löste problemet med symbolerna!
+        );
+        return $response;
+    }
 }

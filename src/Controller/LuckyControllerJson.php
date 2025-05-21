@@ -139,4 +139,150 @@ class LuckyControllerJson
         );
         return $response;
     }
+
+
+
+    #[Route("/api/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards_api", methods: ["POST"])]
+    public function testPostDrawOneCardsApi(
+        SessionInterface $session,
+        int $num = 5
+    ): Response
+    {
+
+
+        $deck = $session->get("deck");
+
+        if (!$deck) {
+            $deck = new DeckofCards();
+        }
+
+        if ($num > 52) {
+            throw new \Exception("Can not roll more than 52 cards!");
+        }
+
+        $cardDraw = [];
+        for ($i = 1; $i <= $num; $i++) {
+            $card = $deck->drawCard();
+            if ($card === null) {
+                break;
+            }
+            $cardDraw[] = $card->getAsString();
+        }
+
+        $session->set("deck", $deck);
+
+        $data = [
+            "num_cards" => count($cardDraw),
+            "cardDraw" => $cardDraw,
+            "remainingCards" => $deck->getRemainingCards(),
+        ];
+    
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions()
+            | JSON_PRETTY_PRINT
+            | JSON_UNESCAPED_UNICODE
+
+            //behövde tydligen lägga till
+            // ovan |JSON_UNESCAPED_UNICODE 
+            // för att få symbolerna att funka i
+            //json när visar dem i denna routen.
+
+            // => och ja det löste problemet med symbolerna!
+        );
+        return $response;
+    }
+
+
+    // #[Route("/api/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards_api", methods: ["POST"])]
+    // public function testDrawOneCardsApi(
+    //     SessionInterface $session,
+    //     int $num = 5
+    // ): Response
+    // {
+
+
+    //     $deck = $session->get("deck");
+
+    //     if (!$deck) {
+    //         $deck = new DeckofCards();
+    //     }
+
+    //     if ($num > 52) {
+    //         throw new \Exception("Can not roll more than 52 cards!");
+    //     }
+
+    //     $cardDraw = [];
+    //     for ($i = 1; $i <= $num; $i++) {
+    //         $card = $deck->drawCard();
+    //         if ($card === null) {
+    //             break;
+    //         }
+    //         $cardDraw[] = $card->getAsString();
+    //     }
+
+    //     $session->set("deck", $deck);
+
+    //     $data = [
+    //         "num_cards" => count($cardDraw),
+    //         "cardDraw" => $cardDraw,
+    //         "remainingCards" => $deck->getRemainingCards(),
+    //     ];
+    
+    //     $response = new JsonResponse($data);
+    //     $response->setEncodingOptions(
+    //         $response->getEncodingOptions()
+    //         | JSON_PRETTY_PRINT
+    //         | JSON_UNESCAPED_UNICODE
+
+    //         //behövde tydligen lägga till
+    //         // ovan |JSON_UNESCAPED_UNICODE 
+    //         // för att få symbolerna att funka i
+    //         //json när visar dem i denna routen.
+
+    //         // => och ja det löste problemet med symbolerna!
+    //     );
+    //     return $response;
+    // }
+
+
+    #[Route("/api/deck/draw", name: "api_deck_draw", methods: ["POST"])]
+    public function testDrawOneCardApi(
+        SessionInterface $session,
+        int $num = 5
+    ): Response
+    {
+
+
+        $deck = $session->get("deck");
+
+        if (!$deck) {
+            $deck = new DeckofCards();
+        }
+
+        $card = $deck->drawCard();
+
+        $session->set("deck",$deck);
+
+        $data = [
+            "card" => $card,
+            "cardString" => $card->getAsString() ?? "No more cards.",
+            "remainingCards" => $deck->getRemainingCards(),
+        ];
+    
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions()
+            | JSON_PRETTY_PRINT
+            | JSON_UNESCAPED_UNICODE
+
+            //behövde tydligen lägga till
+            // ovan |JSON_UNESCAPED_UNICODE 
+            // för att få symbolerna att funka i
+            //json när visar dem i denna routen.
+
+            // => och ja det löste problemet med symbolerna!
+        );
+        return $response;
+    }
 }

@@ -3,9 +3,6 @@
 namespace App\Card;
 
 class DeckofCards
-// ÄNDRA  TILL DECKOFCARDS!!!!!!!!!!!!!!!
-// HÄR!
-
 {
     private array $deck = [];
     private int $remainingCards;

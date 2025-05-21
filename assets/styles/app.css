@@ -268,3 +268,28 @@ h1 {
 .black {
     color: black;
 }
+
+
+
+.subheading {
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+
+.classTitles {
+
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+
+.classText {
+    margin-left: 2rem;
+    /* margin-top: 0.4rem; */
+}
+
+.umldiv {
+    margin-top: 1rem;
+}

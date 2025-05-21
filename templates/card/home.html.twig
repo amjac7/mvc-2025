@@ -25,32 +25,80 @@ när kollade i min base.html.twig fil som namnet! #}
                     <li><a href="{{ path('card_init_get') }}">init routen</a></li>
                 </div>
 
-<p>Strukturen för mina klasser:</p>
+<p class="subheading">
+    Klasserna jag har plus strukturen för mina klasser:
+</p>
 
-<div class="classTitles">
-    <p>Card</p>
-</div>
+{# <div class="classTitles"> #}
+<div>
+    <p class="classTitles">Card</p>
 
-<div class="classTitles">
-    <p>CardGraphic</p>
-</div>
-
-<div class="classTitles">
-    <p>CardHand</p>
-</div>
-
-<div class="classTitles">
-    <p>DeckofCards</p>
-</div>
-
-<div class="classTitles">
-    <p>CardGameController</p>
+    <p class="classText">
+        Klassen Card är basklassen och representerar ett enskilt spelkortkort
+        med färg och värde. Detta är grunden till spelet,
+        används utav flera andra klasser.
+    </p>
 </div>
 
 
+<div>
+    <p class="classTitles">CardGraphic</p>
+
+    <p class="classText">
+        Klassen CardGraphic lägger till en visuell
+        representation av korten, med hjälp av
+        UTF-8 symboler.
+        Denna klassen utökar från  klassen Card.
+    </p>
+</div>
+
+<div>
+    <p class="classTitles">CardHand</p>
+
+    <p class="classText">
+        Klassen CardHand representerar spelarens hand,
+        Den innehåller flera Card objekt som spelaren "dragit".
+        Den hanterar t.ex tillägg och visning av kort.
+    </p>
+</div>
 
 
-<p>UML KLASS DIAGRAM LÄGGS IN HÄR!</p>
+    
 
+
+<div>
+    <p class="classTitles">DeckofCards</p>
+
+    <p class="classText">
+        Klassen DeckofCards innehåller hela kortleken,
+        innehållande flera Card-objekt. Den ansvarar bl.a 
+        att blanda och dra kortleken.
+    </p>
+</div>
+
+
+
+<div>
+    <p class="classTitles">CardGameController</p>
+
+    <p class="classText">
+        Klassen CardGameController är en Controller i
+        Symfony sm hanterar webb routerna. Den använder sig
+        bl.a av DeckofCards och CardHand och andra klasser för
+        att hantera logiken och skicka datan till olika vyerna 
+        (twig-filerna).
+    </p>
+</div>
+
+
+
+
+<p class="subheading">
+    UML-diagram:
+</p>
+
+<div class="umldiv">
+    <p>UML KLASS DIAGRAM LÄGGS IN HÄR!</p>
+</div>
 
 {% endblock %}

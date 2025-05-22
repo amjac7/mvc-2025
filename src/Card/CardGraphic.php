@@ -39,14 +39,14 @@ class CardGraphic extends Card
     {
         parent::__construct($value);
 
-        
+
 
         if (!$this->representation) {
-            $counterTest = 0; 
+            $counterTest = 0;
             foreach ($this->suits as $suit) {
                 foreach ($this->ranks as $rank) {
                     $this->representation[$counterTest] = $suit . " " . $rank;
-                    $counterTest += 1; 
+                    $counterTest += 1;
                 }
             }
         }

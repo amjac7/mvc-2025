@@ -16,7 +16,7 @@ class DeckofCards
             $this->deck[$i] = $card;
         }
 
-    $this->remainingCards = count($this->deck);
+        $this->remainingCards = count($this->deck);
     }
 
 
@@ -32,14 +32,17 @@ class DeckofCards
         return null;
     }
 
-    public function getRemainingCards(): int {
+    public function getRemainingCards(): int
+    {
         return $this->remainingCards;
     }
-    public function shuffle(): void {
+    public function shuffle(): void
+    {
         shuffle($this->deck);
     }
 
-    public function getAllCards(): array {
+    public function getAllCards(): array
+    {
         return $this->deck;
     }
 
@@ -54,5 +57,5 @@ class DeckofCards
 
         return $copy;
     }
-    
+
 }

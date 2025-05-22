@@ -5,7 +5,6 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 use App\Card\DeckofCards;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -61,8 +60,7 @@ class LuckyControllerJson
     #[Route("/api/deck", name: "api_deck")]
     public function allCards(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = $session->get("deck");
 
         if (!$deck) {
@@ -70,7 +68,7 @@ class LuckyControllerJson
         }
 
         $cards = $deck->getSortedCards();
-        
+
         $cardDraw = [];
 
         foreach ($cards as $card) {
@@ -78,9 +76,9 @@ class LuckyControllerJson
         }
 
         $data = [
-            "cardDraw" => $cardDraw, 
+            "cardDraw" => $cardDraw,
         ];
-        
+
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
@@ -89,7 +87,7 @@ class LuckyControllerJson
             | JSON_UNESCAPED_UNICODE
 
             //behövde tydligen lägga till
-            // ovan |JSON_UNESCAPED_UNICODE 
+            // ovan |JSON_UNESCAPED_UNICODE
             // för att få symbolerna att funka i
             //json när visar dem i denna routen.
 
@@ -101,8 +99,7 @@ class LuckyControllerJson
     #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["POST"])]
     public function testShuffleApiDeck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
 
         $deck = new DeckofCards();
 
@@ -120,9 +117,9 @@ class LuckyControllerJson
         }
 
         $data = [
-            "cardDraw" => $cardDraw, 
+            "cardDraw" => $cardDraw,
         ];
-        
+
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
@@ -131,7 +128,7 @@ class LuckyControllerJson
             | JSON_UNESCAPED_UNICODE
 
             //behövde tydligen lägga till
-            // ovan |JSON_UNESCAPED_UNICODE 
+            // ovan |JSON_UNESCAPED_UNICODE
             // för att få symbolerna att funka i
             //json när visar dem i denna routen.
 
@@ -149,8 +146,7 @@ class LuckyControllerJson
     public function testDrawOneCardApiGet(
         Request $request,
         SessionInterface $session,
-    ): Response
-    {
+    ): Response {
 
 
         $deck = $session->get("deck");
@@ -161,14 +157,14 @@ class LuckyControllerJson
 
         $card = $deck->drawCard();
 
-        $session->set("deck",$deck);
+        $session->set("deck", $deck);
 
         $data = [
             "card" => $card,
             "cardString" => $card->getAsString() ?? "No more cards.",
             "remainingCards" => $deck->getRemainingCards(),
         ];
-    
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions()
@@ -176,7 +172,7 @@ class LuckyControllerJson
             | JSON_UNESCAPED_UNICODE
 
             //behövde tydligen lägga till
-            // ovan |JSON_UNESCAPED_UNICODE 
+            // ovan |JSON_UNESCAPED_UNICODE
             // för att få symbolerna att funka i
             //json när visar dem i denna routen.
 
@@ -191,8 +187,7 @@ class LuckyControllerJson
     public function testDrawOneCardApi(
         Request $request,
         SessionInterface $session,
-    ): Response
-    {
+    ): Response {
 
 
         $deck = $session->get("deck");
@@ -203,14 +198,14 @@ class LuckyControllerJson
 
         $card = $deck->drawCard();
 
-        $session->set("deck",$deck);
+        $session->set("deck", $deck);
 
         $data = [
             "card" => $card,
             "cardString" => $card->getAsString() ?? "No more cards.",
             "remainingCards" => $deck->getRemainingCards(),
         ];
-    
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions()
@@ -218,7 +213,7 @@ class LuckyControllerJson
             | JSON_UNESCAPED_UNICODE
 
             //behövde tydligen lägga till
-            // ovan |JSON_UNESCAPED_UNICODE 
+            // ovan |JSON_UNESCAPED_UNICODE
             // för att få symbolerna att funka i
             //json när visar dem i denna routen.
 
@@ -228,13 +223,12 @@ class LuckyControllerJson
     }
 
 
-    
+
     #[Route("/api/deck/draw/{num<\d+>?5}", name: "test_draw_num_cards_api_get", methods: ["GET"])]
     public function testPostDrawManyCardsApiGet(
         SessionInterface $session,
         int $num = 5
-    ): Response
-    {
+    ): Response {
 
 
         $deck = $session->get("deck");
@@ -263,7 +257,7 @@ class LuckyControllerJson
             "cardDraw" => $cardDraw,
             "remainingCards" => $deck->getRemainingCards(),
         ];
-    
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions()
@@ -271,7 +265,7 @@ class LuckyControllerJson
             | JSON_UNESCAPED_UNICODE
 
             //behövde tydligen lägga till
-            // ovan |JSON_UNESCAPED_UNICODE 
+            // ovan |JSON_UNESCAPED_UNICODE
             // för att få symbolerna att funka i
             //json när visar dem i denna routen.
 
@@ -286,8 +280,7 @@ class LuckyControllerJson
     public function testPostDrawManyCardsApi(
         SessionInterface $session,
         int $num = 5
-    ): Response
-    {
+    ): Response {
 
 
         $deck = $session->get("deck");
@@ -316,7 +309,7 @@ class LuckyControllerJson
             "cardDraw" => $cardDraw,
             "remainingCards" => $deck->getRemainingCards(),
         ];
-    
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions()
@@ -324,7 +317,7 @@ class LuckyControllerJson
             | JSON_UNESCAPED_UNICODE
 
             //behövde tydligen lägga till
-            // ovan |JSON_UNESCAPED_UNICODE 
+            // ovan |JSON_UNESCAPED_UNICODE
             // för att få symbolerna att funka i
             //json när visar dem i denna routen.
 

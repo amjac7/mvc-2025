@@ -19,7 +19,10 @@
 
                     <li><a href="{{ path('api_deck') }}">API deck, draw <strong>all</strong> cards</a></li>
                     <li><a href="{{ path('api_deck_shuffle') }}">API deck, draw <strong>all shuffled</strong> cards</a></li>
-                    <li><a href="{{ path('test_draw_num_cards_api', {num: 5}) }}">API deck, draw <strong>multiple</strong> cards</a></li>
-                    <li><a href="{{ path('api_deck_draw') }}">API deck, draw <strong>one</strong> card</a></li>
+                    {# <li><a href="{{ path('api_deck_draw_one_get') }}">API deck, draw <strong>one</strong> card</a></li> #}
+                    <li><a href="{{ path('test_draw_num_cards_api_get', {num: 4}) }}">API deck, draw <strong>multiple</strong> cards</a></li>
+
+
+                    <li><a href="{{ path('api_deck_draw_one_get') }}">Draw <strong>one</strong> card</a></li>
                 </div>
 {% endblock %}

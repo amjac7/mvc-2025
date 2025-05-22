@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspelet tjugoett Game{% endblock %}
+
+{# ändrade mitt namn till body för hade ej main,
+när kollade i min base.html.twig fil som namnet! #}
+{# {% block main %} #}
+{% block body %}
+<h1>Game game</h1>
+
+<div>
+    <p class="classTitles">Introduktion</p>
+
+    <p class="classText">
+        <strong>Kortspelet tjugoett</strong> är ett kortspel där målet är att få en 
+        hand med en den totala summan av poängen är så nära <strong>21</strong> som
+        möjligt utan att man överskrider den.
+    </p>
+</div>
+
+
+<div>
+    <p class="classTitles">Regler</p>
+
+    <p class="classText">
+        text ang. reglerna
+    </p>
+</div>
+
+<div class="info">
+    <li><a href="{{ path('test_play_game') }}">Starta spelet</a></li>
+</div>
+
+                <div class="info">
+                    <p>Länkar till game routerna:</p>
+
+            
+                </div>
+
+
+
+{% endblock %}

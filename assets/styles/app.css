@@ -294,3 +294,35 @@ h1 {
     margin-top: 1rem;
     text-align: center;
 }
+
+
+
+/* FÖR KMOM03 */
+
+.gameBoard {
+
+    background-color: rgb(52, 125, 52);
+    color: white;
+    padding: 20%;
+
+}
+
+
+.itemsonboard {
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+.playerdiv {
+
+    padding: 10%;
+    background-color: cornflowerblue;
+}
+
+.bankdiv {
+
+    padding: 10%;
+    background-color: palevioletred;
+}

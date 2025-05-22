@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+// RENSA
 use App\Card\DeckofCards;
 use App\Card\Card;
 use App\Card\CardGraphic;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CardGameController extends AbstractController
+class GameController extends AbstractController
 {
     #[Route("/card", name: "card_start")]
     public function home(): Response

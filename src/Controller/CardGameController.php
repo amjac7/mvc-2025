@@ -339,26 +339,4 @@ class CardGameController extends AbstractController
         return $this->redirectToRoute('session_start');
     }
 
-
-    //FÖR KMOM03
-    #[Route("/game", name: "game_start")]
-    public function gameHome(): Response
-    {
-        return $this->render('game/home.html.twig');
-    }
-
-
-
-    #[Route("/game/play", name: "test_play_game")]
-    public function gamePlay(
-        Request $request,
-        // SessionInterface $session
-    ): Response {
-
-
-        return $this->render('game/test/play.html.twig');
-    }
-
-
-
 }
